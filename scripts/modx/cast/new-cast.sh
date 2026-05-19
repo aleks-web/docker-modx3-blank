@@ -16,16 +16,22 @@ docker exec -i db_modx mysql -u root -e "DROP DATABASE IF EXISTS ${DB_NAME};CREA
 
 # File permissions
 docker exec db_modx sh -c "chmod -R 644 /etc/mysql/my.cnf"
+docker exec site sh -c  "chmod -R 777 ./"
 
 # Import database
 docker cp ./scripts/modx/cast/cast/$sql_cast_name db_modx:$sql_cast_name
 docker exec db_modx sh -c "mysql -u root ${DB_NAME} < $sql_cast_name"
 docker exec -i db_modx rm -f $sql_cast_name
 
-docker cp ./scripts/modx/cast/cast/packages/ site:/var/www/modx/core/packages/
-docker cp ./scripts/modx/cast/cast/components/ site:/var/www/modx/core/components/
-docker cp ./scripts/modx/cast/cast/uploads/ site:/var/www/modx/uploads/
-docker cp ./scripts/modx/cast/cast/resources/ site:/var/www/modx/resources/
+cp -r -a -v ./scripts/modx/cast/cast/packages/ ./site/modx/core/
+cp -r -a -v ./scripts/modx/cast/cast/components ./site/modx/core/
+cp -r -a -v ./scripts/modx/cast/cast/uploads ./site/modx/
+cp -r -a -v ./scripts/modx/cast/cast/resources ./site/modx/
+
+#docker cp ./scripts/modx/cast/cast/packages site:/var/www/modx/core/packages
+#docker cp ./scripts/modx/cast/cast/components site:/var/www/modx/core/components
+#docker cp ./scripts/modx/cast/cast/uploads site:/var/www/modx/uploads
+#docker cp ./scripts/modx/cast/cast/resources site:/var/www/modx/resources
 
 # docker exec site sh -c "composer run-script post-create-project-cmd"
 # docker exec site sh -c "cd ./_build && rm -f build.config.php && rm -f build.properties.php"

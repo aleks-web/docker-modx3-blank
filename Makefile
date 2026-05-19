@@ -66,7 +66,7 @@ tw-watch: ## Включить tailwind слежку (для разработки
 modx-new-install: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
 	sh ./scripts/modx/new-install.sh
 
-modx-new-cast: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
+modx-cast-install: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
 	sh ./scripts/modx/cast/new-cast.sh
 
 modx-get: ## Скачать modx с репозитория
