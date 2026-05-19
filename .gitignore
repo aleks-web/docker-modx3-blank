@@ -6,6 +6,7 @@ package-lock.json
 
 site/backups
 site/modx/core/cache
+site/modx/core/packages
 site/modx/assets/components/minifyx/cache
 site/resources/assets/tw/output.css
 site/resources/assets/tw/render_pages/*.html

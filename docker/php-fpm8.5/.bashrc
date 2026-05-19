@@ -1,1 +1,0 @@
-export PATH=$PATH:/var/www/modx/core/vendor/bin

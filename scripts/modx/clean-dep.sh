@@ -1,0 +1,10 @@
+make -s down
+rm -rf ./site/modx/composer.lock
+rm -rf ./site/modx/core/vendor
+rm -rf ./site/modx/core/configure.php
+rm -rf ./site/modx/config.core.php
+rm -rf ./site/modx/manager/config.core.php
+rm -rf ./site/modx/assets
+rm -rf ./site/modx/core/components
+rm -rf ./site/modx/core/cache/*
+rm -rf ./site/modx/.modx-cli

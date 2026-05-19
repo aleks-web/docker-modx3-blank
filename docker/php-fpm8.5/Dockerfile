@@ -36,9 +36,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 WORKDIR /var/www/modx
 
-COPY /docker/php-fpm8.5/entrypoint.sh /root/entrypoint.sh
-COPY /docker/php-fpm8.5/.bashrc /root/.bashrc
+COPY /docker/php-fpm8.5/entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/root/entrypoint.sh"]
+ENV PATH=$PATH:/var/www/modx/core/vendor/bin
 
-CMD ["echo", "Container \"site\" started"]
+ENTRYPOINT ["/entrypoint.sh"]

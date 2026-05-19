@@ -64,16 +64,16 @@ tw-watch: ## Включить tailwind слежку (для разработки
 
 # Команды для работы с modx
 modx-new-install: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
-	sh ./scripts/modx/new-install.sh
+	make -s dev-clean-dep && sh ./scripts/modx/new-install.sh
 
-modx-cast-install: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
-	sh ./scripts/modx/cast/new-cast.sh
+modx-cast-install: ## Новая установка modx из cast
+	make -s modx-new-install && sh ./scripts/modx/cast/new-cast.sh
 
-modx-get: ## Скачать modx с репозитория
-	git clone https://github.com/modxcms/revolution.git ./site/modx/
+modx-update: ## Обновить submodule modx
+	git submodule update site/modx
 
 modx-cache-clean: ## Очистка кеша MODX
-	docker exec -i site chmod -R 777 ./core/cache && rm -rf ./core/cache/*
+	docker exec -i site sh -c "rm -rf ./core/cache/*"
 
 modx-db-drop: ## Удаление базы данных modx
 	docker exec -i db_modx mysql -u root -e "DROP DATABASE IF EXISTS $(DB_NAME);"
@@ -123,6 +123,9 @@ dev-modx-auth: ## Авто-авторизация
 
 dev-make-cast:
 	. ./scripts/modx/cast/make.sh
+
+dev-clean-dep: ## Очистка компонентов, библиотек и тд
+	. ./scripts/modx/clean-dep.sh
 
 backup: ## Создает backup
 	. ./scripts/backup/backup.sh

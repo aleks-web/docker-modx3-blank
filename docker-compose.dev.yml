@@ -35,6 +35,8 @@ services:
         volumes:
             - ./site/modx:/var/www/modx
             - ./site/components:/var/www/modx/core/components
+            - ./site/packages:/var/www/modx/core/packages
+            - ./site/assets:/var/www/modx/assets
             - ./site/resources:/var/www/modx/resources
             - ./site/uploads:/var/www/modx/uploads
             - ./site/.modx-cli:/var/www/modx/.modx-cli
