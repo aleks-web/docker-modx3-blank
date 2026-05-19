@@ -19,9 +19,11 @@ docker exec site sh -c "cd setup && php ./index.php --installmode=new && rm -f c
 docker exec site sh -c "cd ./_build && rm -f build.config.php && rm -f build.properties.php"
 
 # File permissions
-docker exec site sh -c "chmod -R 644 ./core/config/config.inc.php && chmod -R 755 ./core/cache"
+docker exec site sh -c "chmod -R 777 ./ && chmod -R 644 ./core/config/config.inc.php && chmod -R 755 ./core/cache"
 docker exec db_modx sh -c "chmod -R 644 /etc/mysql/my.cnf"
 
 # Modx update from configure.php
 docker cp ./scripts/modx/configure.php site:/var/www/modx/configure.php
 docker exec site sh -c "php configure.php && rm -rf ./core/cache/* && rm -f configure.php"
+
+start http://ultradent72.ru/manager

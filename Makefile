@@ -61,7 +61,7 @@ tw-watch: ## Включить tailwind слежку (для разработки
 
 # Команды для работы с modx
 modx-new-install: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
-	sh ./scripts/bash/new-install.sh
+	sh ./scripts/modx/new-install.sh
 
 submodule-update: ## Обновить submodule
 	git submodule update
