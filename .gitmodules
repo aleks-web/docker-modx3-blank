@@ -1,0 +1,3 @@
+[submodule "site/modx"]
+	path = site/modx
+	url = https://github.com/modxcms/revolution.git

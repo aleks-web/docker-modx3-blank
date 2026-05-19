@@ -1,0 +1,13 @@
+docker/mysql/volume
+.data
+node_modules
+package-lock.json
+.env
+
+site/modx/core/cache
+site/modx/assets/components/minifyx/cache
+site/resources/assets/tw/output.css
+site/resources/assets/tw/render_pages/*.html
+site/resources/assets/tw/hash.txt
+site/modx/version
+site/modx/ion
