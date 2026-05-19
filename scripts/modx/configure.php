@@ -105,7 +105,7 @@ try {
     };
     $mediaUploadsObj = createMediaUploads($modx);
 
-    echo 'config_settins.php системные настройки обновлены';
+    echo 'config_settins.php системные настройки обновлены' . "\n";
 } catch (\Exception $e) {
-    echo 'config_settins.php системные настройки не обновлены';
+    echo 'config_settins.php системные настройки не обновлены' . "\n";
 }

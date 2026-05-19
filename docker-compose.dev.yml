@@ -58,8 +58,6 @@ services:
             - ./docker/mysql/volume:/var/lib/mysql
             - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
 
-
-
     phpmyadmin:
         container_name: phpmyadmin
         depends_on:

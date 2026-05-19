@@ -48,7 +48,7 @@ ifeq ($(NODE_ENV), production)
 endif
 
 s:
-	make -s modx-update && make -s down && make -s d-clean && make -s build-no-cache && make -s up && make -s modx-sh
+	make -s down && make -s d-clean && make -s build-no-cache && make -s up && make -s modx-sh
 
 restart: ## Перезапустить контейнеры docker
 	make -s down && make -s up
@@ -63,8 +63,8 @@ tw-watch: ## Включить tailwind слежку (для разработки
 modx-new-install: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
 	sh ./scripts/modx/new-install.sh
 
-modx-update: ## Обновить submodule modx
-	git submodule update site/modx
+modx-get: ## Скачать modx с репозитория
+	git clone https://github.com/modxcms/revolution.git ./site/modx/
 
 modx-cache-clean: ## Очистка кеша MODX
 	docker exec -i site chmod -R 777 ./core/cache && rm -rf ./core/cache/*
