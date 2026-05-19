@@ -36,7 +36,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 ENV PATH="$PATH:/var/www/modx/core/vendor/bin"
 
+RUN mkdir /var/www/modx
+RUN chown -R www-data:www-data /var/www/modx
+
 WORKDIR /var/www/modx
-RUN chmod -R 644 /var/www/modx
+RUN chmod -R 755 /var/www/modx
 
 CMD ["php-fpm", "-R"]

@@ -1,13 +1,13 @@
 source ./.env
-# make -s modx-update
+make -s modx-update
 make -s modx-cache-clean
 make -s up
 
 # Копируем файл-конфиг для установки modx в интерактивном режиме
 docker exec -i site sh -c "git config --global --add safe.directory /var/www/modx"
-# docker exec site sh -c "rm -r composer.lock && rm -r config.core.php && rm -r ./core/vendor"
-# docker exec -i site sh -c "composer install"
-# docker exec site sh -c "composer require symfony/var-dumper"
+docker exec site sh -c "rm -r composer.lock && rm -r config.core.php && rm -r ./core/vendor"
+docker exec -i site sh -c "composer install"
+docker exec site sh -c "composer require symfony/var-dumper"
 docker exec site sh -c "composer require finetuned/modx-cli"
 docker cp ./docker/php-fpm8.5/.bashrc site:/root/.bashrc
 
@@ -26,4 +26,5 @@ docker exec db_modx sh -c "chmod -R 644 /etc/mysql/my.cnf"
 docker cp ./scripts/modx/configure.php site:/var/www/modx/configure.php
 docker exec site sh -c "php configure.php && rm -rf ./core/cache/* && rm -f configure.php"
 
-start http://ultradent72.ru/manager
+docker cp ./scripts/modx/auth.php site:/var/www/modx/auth.php
+start http://ultradent72.ru/auth.php

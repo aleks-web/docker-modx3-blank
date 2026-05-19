@@ -63,8 +63,8 @@ tw-watch: ## Включить tailwind слежку (для разработки
 modx-new-install: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
 	sh ./scripts/modx/new-install.sh
 
-submodule-update: ## Обновить submodule
-	git submodule update
+modx-update: ## Обновить submodule modx
+	git submodule update site/modx
 
 modx-cache-clean: ## Очистка кеша MODX
 	docker exec -i site chmod -R 777 ./core/cache && rm -rf ./core/cache/*
