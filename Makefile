@@ -59,12 +59,15 @@ d-clean:
 tw-watch: ## Включить tailwind слежку (для разработки)
 	npx @tailwindcss/cli -i ./modx/resources/assets/tw/input.css -o ./modx/resources/assets/tw/output.css --watch
 
+
+
+
 # Команды для работы с modx
 modx-new-install: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
 	sh ./scripts/modx/new-install.sh
 
-modx-new-install-import: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
-	sh ./scripts/modx/new-install-import.sh
+modx-new-cast: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
+	sh ./scripts/modx/cast/new-cast.sh
 
 modx-get: ## Скачать modx с репозитория
 	git clone https://github.com/modxcms/revolution.git ./site/modx/
@@ -95,9 +98,6 @@ modx-db-import: ## Импорт базы данных modx
 modx-session-clear: ## Очистка таблицы сессий modx
 	docker exec -i db_modx mysql -u root -e "TRUNCATE TABLE ${DB_NAME}.modx_session"
 
-modx-auth: ## Авто-авторизация
-	docker cp ./scripts/modx/auth.php site:/var/www/modx/auth.php && sleep 3s && start https://ultradent72.ru/auth.php
-
 # Команды для работы с базой данных
 db-sh: ## Консоль хоста, где находится база данных
 	docker exec -it db_modx sh
@@ -117,6 +117,12 @@ dev-dns-up: ## Добавление сопоставления localhost с до
 
 dev-dns-down: ## Удаление сопоставления localhost с доменом в hosts файле
 	go run ./scripts/dns_change/remove.go
+
+dev-modx-auth: ## Авто-авторизация
+	docker cp ./scripts/modx/auth.php site:/var/www/modx/auth.php && sleep 3s && start https://ultradent72.ru/auth.php
+
+dev-make-cast:
+	. ./scripts/modx/cast/make.sh
 
 backup: ## Создает backup
 	. ./scripts/backup/backup.sh

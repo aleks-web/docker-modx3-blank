@@ -1,21 +1,23 @@
-source ./.env
+make -s up
 
-mysqldump_name="modx_db_backup.sql"
+mysqldump_name="modx_cast.sql"
 folder_name="date_"$(date +%d-%m-%Y)"-time_"$(date +%H_%M_%S)
-path="./site/backups/backup-${folder_name}/"
+path="./scripts/modx/cast/cast/"
 mysqldump_save_path=$path$mysqldump_name
 package_path=$path"packages/"
 components_path=$path"components/"
 resources_path=$path"resources/"
 uploads_path=$path"uploads/"
 
-mkdir -p $path
+mkdir $path
 
 docker exec db_modx sh -c "mysqldump -u root ${DB_NAME} > $mysqldump_name"
-docker cp db_modx:modx_db_backup.sql $mysqldump_save_path
+docker cp db_modx:$mysqldump_name $mysqldump_save_path
 docker exec db_modx sh -c "rm -rf $mysqldump_name"
 
 docker cp site:/var/www/modx/core/packages $package_path
 docker cp site:/var/www/modx/core/components $components_path
 docker cp site:/var/www/modx/resources $resources_path
 docker cp site:/var/www/modx/uploads $uploads_path
+
+# find $path -name '*core*' -exec rm -rf {} +
