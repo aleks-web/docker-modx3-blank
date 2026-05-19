@@ -37,9 +37,9 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 ENV PATH="$PATH:/var/www/modx/core/vendor/bin"
 
 RUN mkdir /var/www/modx
-RUN chown -R www-data:www-data /var/www/modx
-
 WORKDIR /var/www/modx
-RUN chmod -R 755 /var/www/modx
+
+COPY /docker/php-fpm8.5/entrypoint.sh /root/entrypoint.sh
+ENTRYPOINT ["/root/entrypoint.sh"]
 
 CMD ["php-fpm", "-R"]
