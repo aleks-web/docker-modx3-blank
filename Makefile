@@ -92,6 +92,9 @@ modx-db-import: ## Импорт базы данных modx
 modx-session-clear: ## Очистка таблицы сессий modx
 	docker exec -i db_modx mysql -u root -e "TRUNCATE TABLE ${DB_NAME}.modx_session"
 
+modx-auth: ## Авто-авторизация
+	docker cp ./scripts/modx/auth.php site:/var/www/modx/auth.php && sleep 3s && start https://ultradent72.ru/auth.php
+
 # Команды для работы с базой данных
 db-sh: ## Консоль хоста, где находится база данных
 	docker exec -it db_modx sh

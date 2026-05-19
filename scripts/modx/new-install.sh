@@ -24,7 +24,4 @@ docker exec db_modx sh -c "chmod -R 644 /etc/mysql/my.cnf"
 docker cp ./scripts/modx/configure.php site:/var/www/modx/configure.php
 docker exec site sh -c "php configure.php && rm -rf ./core/cache/* && rm -f configure.php"
 
-docker cp ./scripts/modx/auth.php site:/var/www/modx/auth.php
-sleep 5s
-start https://ultradent72.ru/auth.php
-docker exec site sh -c "rm -f auth.php"
+make -s modx-auth

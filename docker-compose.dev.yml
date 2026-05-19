@@ -34,6 +34,7 @@ services:
             - docker-modx-network
         volumes:
             - ./site/modx:/var/www/modx
+            - ./site/components:/var/www/modx/core/components
             - ./site/resources:/var/www/modx/resources
             - ./site/uploads:/var/www/modx/uploads
             - ./site/.modx-cli:/var/www/modx/.modx-cli
