@@ -39,7 +39,6 @@ services:
             - ./site/.modx-cli:/var/www/modx/.modx-cli
         depends_on:
             - db_modx
-        command: ["sh", "-c", "chmod -R 777 ./ && chown -R www-data:www-data ./"]
 
     db_modx:
         container_name: db_modx
