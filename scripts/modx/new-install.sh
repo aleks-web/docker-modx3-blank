@@ -20,6 +20,11 @@ docker exec site sh -c "cd ./_build && rm -f build.config.php && rm -f build.pro
 # File permissions
 docker exec db_modx sh -c "chmod -R 644 /etc/mysql/my.cnf"
 
+# Import database
+docker cp ./scripts/modx/modx_import.sql db_modx:modx_import.sql
+docker exec db_modx sh -c "mysql -u root ${DB_NAME} < modx_import.sql"
+docker exec -i db_modx rm -f modx_import.sql
+
 # Modx update from configure.php
 docker cp ./scripts/modx/configure.php site:/var/www/modx/configure.php
 docker exec site sh -c "php configure.php && rm -rf ./core/cache/* && rm -f configure.php"

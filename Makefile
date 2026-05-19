@@ -63,6 +63,9 @@ tw-watch: ## Включить tailwind слежку (для разработки
 modx-new-install: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
 	sh ./scripts/modx/new-install.sh
 
+modx-new-install-import: ## Новая установка modx в интерактивном режиме (дропает текущую базу данных)
+	sh ./scripts/modx/new-install-import.sh
+
 modx-get: ## Скачать modx с репозитория
 	git clone https://github.com/modxcms/revolution.git ./site/modx/
 
@@ -114,3 +117,6 @@ dev-dns-up: ## Добавление сопоставления localhost с до
 
 dev-dns-down: ## Удаление сопоставления localhost с доменом в hosts файле
 	go run ./scripts/dns_change/remove.go
+
+backup: ## Создает backup
+	. ./scripts/backup/backup.sh
