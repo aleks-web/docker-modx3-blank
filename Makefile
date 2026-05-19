@@ -48,7 +48,7 @@ ifeq ($(NODE_ENV), production)
 endif
 
 s:
-	make -s down && make -s build && make -s up && make -s modx-sh
+	make -s modx-update && make -s down && make -s d-clean && make -s build-no-cache && make -s up && make -s modx-sh
 
 restart: ## Перезапустить контейнеры docker
 	make -s down && make -s up

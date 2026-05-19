@@ -40,6 +40,5 @@ RUN mkdir /var/www/modx
 WORKDIR /var/www/modx
 
 COPY /docker/php-fpm8.5/entrypoint.sh /root/entrypoint.sh
-ENTRYPOINT ["/root/entrypoint.sh"]
 
 CMD ["php-fpm", "-R"]
